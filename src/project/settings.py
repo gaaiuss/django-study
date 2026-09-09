@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "blog",
+    "home",
 ]
 
 MIDDLEWARE = [
@@ -56,10 +58,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "project.urls"
 
-TEMPLATES: list[dict[str, str | bool | dict[str, list[str]] | list[str]]] = [
+TEMPLATES: list[dict[str, str | bool | dict[str, list[str]] | list[Path]]] = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / "base",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

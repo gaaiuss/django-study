@@ -1,10 +1,12 @@
-from django.http import HttpRequest, HttpResponse
+from typing import TYPE_CHECKING
 
-# from django.shortcuts import render
+from django.shortcuts import render
+
+if TYPE_CHECKING:
+    from django.http import HttpRequest, HttpResponse
 
 # Create your views here.
 
 
 def home_view(request: HttpRequest) -> HttpResponse:
-    print(request)
-    return HttpResponse("This is the home view.")
+    return render(request, "home/index.html")
