@@ -1,0 +1,54 @@
+{% load static %}
+<div class="main-content intro-content">
+  <div class="intro-text">
+    <h2>Contact</h2>
+    <p>
+      Title update 2 is out now!<br />Send me a message if you have any
+      questions or sugestions!
+    </p>
+  </div>
+  <div class="contact-img">
+    <img
+      src="{% static 'assets/img/tu2.jpg' %}"
+      alt="Title Update 2 monsters (Lagiacrus and Seregios)"
+    />
+  </div>
+  <div class="contact-form">
+    <fieldset class="form-grid">
+      <legend>Contact me</legend>
+      <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input
+          type="text"
+          name="first-name"
+          id="first-name"
+          placeholder="Your name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input
+          type="text"
+          name="last-name"
+          id="last-name"
+          placeholder="Your last name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="text" name="email" id="email" placeholder="Your e-mail" />
+      </div>
+      <div class="form-group full-width">
+        <label for="message">Message</label>
+        <textarea
+          name="message"
+          id="message"
+          placeholder="Your message"
+        ></textarea>
+      </div>
+      <div class="form-group full-width">
+        <button type="submit">Send message</button>
+      </div>
+    </fieldset>
+  </div>
+</div>

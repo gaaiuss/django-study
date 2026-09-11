@@ -1,3 +1,5 @@
+{% load static %}
+
 <input
   id="close-menu"
   class="close-menu"
@@ -10,7 +12,7 @@
   <div class="main-content menu-content">
     <div class="logo" onclick="getElementById('close-menu').checked = false">
       <a href="#intro">
-        <img class="logo-img" src="assets/img/all.png" alt="" />
+        <img class="logo-img" src="{% static 'assets/img/all.png' %}" alt="" />
       </a>
     </div>
     <nav>
