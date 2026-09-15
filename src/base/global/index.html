@@ -4,40 +4,10 @@
   {% include 'global/partials/head.html' %}
   <body>
     {% include 'global/partials/menu.html' %}
-
-    <section id="intro" class="main-bg section">
-      {% include 'global/partials/intro_section.html' %}
-    </section>
-
-    <section id="apex" class="other-bg section">
-      {% include 'global/partials/main_content_section.html' %}
-    </section>
-
-    <section id="top3" class="grid-one main-bg section">
-      {% include 'global/partials/grid_section.html' %}
-    </section>
-
-    <section id="gallery" class="grid-one other-bg section">
-      {% include 'global/partials/galery_section.html' %}
-    </section>
-
-    <section id="weapons" class="main-bg section">
-      {% include 'global/partials/weapons_section.html' %}
-    </section>
-
-    <section id="contact" class="other-bg section">
-      {% include 'global/partials/contact_section.html' %}
-    </section>
-
-    <footer id="footer" class="caio-footer">
-      <p>
-        <a rel="nofollow" target="_blank" href="https://github.com/gaaiuss"
-          >Made with <span class="heart">❤</span> by Caio Castro</a
-        >
-      </p>
-    </footer>
-
-    <a class="back-to-top" href="#"></a>
-    <script src="{% static 'assets/js/script.js' %}"></script>
+  
+    {% block text %}
+      <h1>BASE</h1>
+    {% endblock text %}
+    
   </body>
 </html>

@@ -3,5 +3,11 @@
 {% include 'global/partials/head.html' %}
 <body>
   {% include 'global/partials/menu.html' %}
+  
+  {% block text %}
+    BLOG
+  {% endblock text %}
+    
+  {% include 'global/partials/post_block.html' %}
 </body>
 </html>
