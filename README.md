@@ -28,13 +28,36 @@ nest all the urls in the main project urls file, the `include()`.
 
 #### Templates
 
-Templates can be separated in any way you want, on folders inside each app or
-even in the root base directory, you just have to specify it on the `settings.py`
-inside the project.
+Templates can be separated in any way you want. By default they are stored in
+`templates` folder inside each app (this includes the project itself).
+
+To create a central template folder or at any other location you want, you can
+specify the path on the `settings.py` `TEMPLATES` in the `DIRS` list inside the
+project, i.e.: `"DIRS": [ BASE_DIR / "base"]`.
 
 Django allows inheritance between templates using the `% extends %` word inside
 the html. This allows you to create a base template and extend it after on other
 templates inside an app for example.
+
+You can import a whole html template using the `% include %` command inside any
+other template. You need to specify the whole path to the template you want to
+include, i.e.: `% include 'global/partials/head.html' %`.
+
+You can create a `% block %` to reuse some part of the code, a block of code,
+in some other template. Just name it and use the same name to rewrite the same
+block on another template.
+
+---
+
+#### Static files
+
+Static files are all the files you will want to use as essential files needed for
+the application to work, like images, css files and script files.
+
+For a first setup you can create the static folder on the project root, but if
+you want to, you can create it on another location, you just need to specify
+the `STATIC_FILES_DIRS`, in the `settings.py` on your project, the location of
+your new static folder.
 
 ---
 
