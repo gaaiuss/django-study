@@ -76,9 +76,12 @@ You can import a whole html template using the `% include %` command inside any
 other template. You need to specify the whole path to the template you want to
 include, e.g.: `% include 'global/partials/head.html' %`.
 
-You can create a `% block %` to reuse some part of the code, a block of code,
-in some other template. Just name it and use the same name to rewrite the same
-block on another template.
+The `% block %` tag is a placeholder for information, is meant to be set on a
+parent template (like on this project under `base/global/index.html`) to be
+replaced on a child template (on this caseon blog and home). This can be used
+to set various options of code blocks (almost like a inheritance relation) on a
+base template and, later on the other child templates, replace them with the
+actual code. _A block DOES NOT WORK inside on a included file_.
 
 URLs in templates can be referenced with the tag `{% url 'url_name' %}` and as
 said before, you can use the `app_name` namespace to specify the url name:
