@@ -3,8 +3,14 @@
 <html lang="en">
   {% include 'global/partials/head.html' %}
   <body>
-    {% include 'global/partials/menu.html' %} {% block text %}
-    <h1>BASE</h1>
-    {% endblock text %}
+    {% include 'global/partials/menu.html' %}
+    {% block text %} {{ text }} {% endblock text %}
+    
+    <main class="content">
+      {% block posts %}{% endblock posts %}
+      {% block home %}{% endblock home %}
+    </main>
+
+       
   </body>
 </html>

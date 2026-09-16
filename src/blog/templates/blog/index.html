@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-{% include 'global/partials/head.html' %}
-<body>
-  {% include 'global/partials/menu.html' %}
+{% extends 'global/index.html' %}
+
+{% block posts %}
+   {% include 'global/partials/post_block.html' %}
+{% endblock posts %}
   
-  {% block text %}
-    {{text}}
-  {% endblock text %}
-    
-  {% include 'global/partials/post_block.html' %}
-</body>
-</html>
