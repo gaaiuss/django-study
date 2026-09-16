@@ -10,6 +10,7 @@ def blog_view(request: HttpRequest) -> HttpResponse:
 
 def index(request: HttpRequest) -> HttpResponse:
     context = {
+        "text": "This is the blog index context",
         "title": "Blog - ",
     }
     return render(request, "blog/index.html", context)

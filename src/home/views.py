@@ -9,4 +9,11 @@ if TYPE_CHECKING:
 
 
 def home_view(request: HttpRequest) -> HttpResponse:
-    return render(request, "home/index.html")
+    context = {
+        "text": "This is the home view context",
+    }
+    return render(
+        request,
+        "home/index.html",
+        context,
+    )
