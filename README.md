@@ -21,8 +21,41 @@ and how they will be separated.
 
 #### URLs
 
-URLs can be nested inside a urls file, within each file there is a method to
-nest all the urls in the main project urls file, the `include()`.
+The apps URLs point to a view that can be:
+
+- function based:
+  1. Add an import: from my_app import views
+  2. Add a URL to urlpatterns: path('', views.home, name='home')
+
+- class based:
+  1. Add an import: from other_app.views import Home
+  2. Add a URL to urlpatterns: path('', Home.as_view(), name='home')
+
+URLs can be nested inside a urls file that you can create on each app and within
+each file there is a method to nest all the urls in the main project urls file,
+the `include()`, e.g.:
+
+1. Import the include() function: from django.urls import include, path
+2. Add a URL to urlpatterns: path('blog/', include('blog.urls'))
+
+To use urls in templates you have to specify a name to it under the path method
+`path('', views.blog, name='index')`. Even better is to set a namespace on the
+top of the urls.py file to get a better name later when using urls on templates
+`app_name = blog` so it will look like `blog:index` on the template.
+
+---
+
+#### Views
+
+Views are the functions or classes that render the templates. They receive a
+http request and returns a http response as a normal http communication.
+
+There you can manipulate the request, specifiy the response template redirection
+path (the page to respond) and manipulate the context.
+
+The context is a data structure in form of a dictionary which you can send data
+to the templates. To use it, you can declare a dictionary especifying the key
+value data, and use the key on the template to get the value.
 
 ---
 
@@ -33,7 +66,7 @@ Templates can be separated in any way you want. By default they are stored in
 
 To create a central template folder or at any other location you want, you can
 specify the path on the `settings.py` `TEMPLATES` in the `DIRS` list inside the
-project, i.e.: `"DIRS": [ BASE_DIR / "base"]`.
+project, e.g.: `"DIRS": [ BASE_DIR / "base"]`.
 
 Django allows inheritance between templates using the `% extends %` word inside
 the html. This allows you to create a base template and extend it after on other
@@ -41,11 +74,15 @@ templates inside an app for example.
 
 You can import a whole html template using the `% include %` command inside any
 other template. You need to specify the whole path to the template you want to
-include, i.e.: `% include 'global/partials/head.html' %`.
+include, e.g.: `% include 'global/partials/head.html' %`.
 
 You can create a `% block %` to reuse some part of the code, a block of code,
 in some other template. Just name it and use the same name to rewrite the same
 block on another template.
+
+URLs in templates can be referenced with the tag `{% url 'url_name' %}` and as
+said before, you can use the `app_name` namespace to specify the url name:
+`blog:index`.
 
 ---
 
@@ -56,8 +93,12 @@ the application to work, like images, css files and script files.
 
 For a first setup you can create the static folder on the project root, but if
 you want to, you can create it on another location, you just need to specify
-the `STATIC_FILES_DIRS`, in the `settings.py` on your project, the location of
-your new static folder.
+the `STATICFILES_DIRS = []`, in the `settings.py` on your project, the location
+of your new static folder.
+
+To use the reference of the static files dir, we use tne tag `{% load static %}`
+on the top of the template file we want to use it and the `{% static %}` command
+on the the link reference, e.g.:`{% static 'assets/css/styles.css'%}`.
 
 ---
 
