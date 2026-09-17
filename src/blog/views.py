@@ -12,7 +12,7 @@ from blog.data import posts
 
 def index(request: HttpRequest) -> HttpResponse:
     context = {
-        "text": "This is the blog index context",
+        # "text": "This is the blog index context",
         "title": "Blog - ",
         "posts": posts,
     }
