@@ -73,6 +73,20 @@ body {
   color: cornsilk;
 }
 
+a {
+  color: darkred;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(228, 54, 54);
+}
+
+ul {
+  list-style: none;
+  display: flex;
+}
+
 /* Classes */
 .content {
   display: grid;
@@ -85,6 +99,16 @@ body {
   padding: 1.5rem;
   box-shadow: 5px 2px 5px rgba(0, 0, 0, 0.2);
   color: rgba(20, 16, 11, 0.9);
+}
+
+.menu {
+  background-color: cornsilk;
+  padding: 1.5rem;
+}
+
+.menu a {
+  background-color: cornsilk;
+  padding: 1.5rem;
 }
 
 /* Media */

@@ -23,7 +23,6 @@ def index(request: HttpRequest) -> HttpResponse:
 
 def post(request: HttpRequest, post_id: int) -> HttpResponse:
     post_found: dict[str, int | str] | None = None
-    print(type(post_id))
 
     for post in posts:
         if post["id"] == post_id:
