@@ -10,8 +10,9 @@
     {% endif %}
     
     <main class="content">
+      {% block post_content %}{% endblock post_content %}
       {% block posts %}{% endblock posts %}
-      {% block home %}{% endblock home %}
+      {% block home %}{% endblock home %}        
     </main>
 
        
