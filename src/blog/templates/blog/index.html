@@ -1,6 +1,8 @@
 {% extends 'global/index.html' %}
 
 {% block posts %}
-   {% include 'global/partials/post_block.html' %}
+   {% for post in posts %}
+      {% include 'global/partials/post_block.html' %}
+   {% endfor %}
 {% endblock posts %}
   
