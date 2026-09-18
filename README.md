@@ -1,8 +1,8 @@
 # Django Study
 
-Django is a framework to develop websites.
+Django is a framework to develop websites. _It is not a server!_
 
-## Basics
+## Details
 
 Django follows the Model View Template (MVT):
 
@@ -33,12 +33,14 @@ The apps URLs point to a view that can be:
   1. Add an import: from other_app.views import Home
   2. Add a URL to urlpatterns: path('', Home.as_view(), name='home')
 
-URLs can be nested inside a urls file that you can create on each app and within
-each file there is a method to nest all the urls in the main project urls file,
+URLs can be nested inside a urls file created on each app. On the project urls
+there is a method to nest all the urls in the main project urls file,
 the `include()`, e.g.:
 
 1. Import the include() function: from django.urls import include, path
 2. Add a URL to urlpatterns: path('blog/', include('blog.urls'))
+
+#### URLs inside templates
 
 To use urls in templates you have to specify a name to it under the path method
 `path('', views.blog, name='index')`. Even better is to set a namespace on the
@@ -176,9 +178,19 @@ with the command: `python manage.py collectstatic`.
 
 ---
 
+### Migrations
+
+Migrations are Django's way of propagating model changes into the database.
+So everytime you want to apply changes you make to your database, you have to
+propagate these migrations to your database.
+
+To apply the changes made on our models we use the `migrate` command to commit
+these changes. When you create new migrations (new models), we use the
+`makemigrations` command.
+
 ## Basic commands
 
-Start a new project:
+### Start a new project
 
 ```sh
 django-admin startproject <project_name> .
@@ -190,7 +202,9 @@ to start a new project.
 `startproject`: command to create a new project
 `.`: path to where the project will be installed
 
-Create an app:
+---
+
+### Create an app
 
 ```sh
 python manage.py startapp <app_name>
@@ -200,7 +214,9 @@ python manage.py startapp <app_name>
 the django-admin as a base command.
 `startapp`: creates a new app.
 
-Collect static files:
+---
+
+### Collect static files
 
 ```sh
 python manage.py collectstatic
@@ -210,3 +226,40 @@ python manage.py collectstatic
 diretory.
 
 ---
+
+### Create super user
+
+```sh
+python manage.py createsuperuser
+```
+
+`createsuperuser`: This command creates the ultimate privilege user that allows
+many Django operations, including access to the admin area.
+`AUTH_PASSWORD_VALIDATORS`: is the project setting that checks the password
+strength, you can check it in your `project/settings.py`.
+
+---
+
+#### Change password
+
+```sh
+python manage.py createsuperuser
+```
+
+For created users only.
+
+---
+
+### Migrations
+
+```sh
+python manage.py makemigrations
+```
+
+Create new migrations based on your models changes.
+
+```sh
+python manage.py migrate
+```
+
+Apply/unapply migrations to your database.
