@@ -160,28 +160,53 @@ To use the reference of the static files dir, we use tne tag `{% load static %}`
 on the top of the template file we want to use it and the `{% static %}` command
 on the the link reference, e.g.:`{% static 'assets/css/styles.css'%}`.
 
+#### Static files in production
+
+Django is not a server, static files are not loaded when using django in production
+(when debug is `DEBUG = False`), static files inside apps or project are just
+used in development.
+
+When you are in production (`DEBUG = True`), you have to configure the allowed
+hosts varible inside the settings `ALLOWED_HOSTS = []` and a static files dir
+to store all the static files used in devepment to be reflected in production
+as well (e.g.: `STATIC_ROOT = BASE_DIR / 'static_files'`).
+
+After all is configured, you can collect all the static files (add to STATIC_ROOT)
+with the command: `python manage.py collectstatic`.
+
 ---
 
 ## Basic commands
 
-`django-admin`: is a command that allows you to do various admin-like actions,
-like start a project for example. In the majority of cases, we use django-admin
-to start a new project.
+Start a new project:
 
 ```sh
 django-admin startproject <project_name> .
 ```
 
-- `startproject`: command to create a new project
-- `.`: path to where the project will be installed
+`django-admin`: is a command that allows you to do various admin-like actions,
+like start a project for example. In the majority of cases, we use django-admin
+to start a new project.
+`startproject`: command to create a new project
+`.`: path to where the project will be installed
 
-`manage.py`: file that is created after the startproject command. It substitutes
-the django-admin as a base command.
-
-`startapp`: creates a new app.
+Create an app:
 
 ```sh
 python manage.py startapp <app_name>
 ```
+
+`manage.py`: file that is created after the startproject command. It substitutes
+the django-admin as a base command.
+`startapp`: creates a new app.
+
+Collect static files:
+
+```sh
+python manage.py collectstatic
+```
+
+`collectstatic`: Collect all static files from apps and add them to the STATIC_ROOT
+diretory.
 
 ---
