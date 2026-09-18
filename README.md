@@ -257,7 +257,7 @@ For created users only.
 python manage.py makemigrations
 ```
 
-Create new migrations based on your models changes.
+Create new migration files based on your models changes.
 
 ```sh
 python manage.py migrate
