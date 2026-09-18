@@ -186,7 +186,8 @@ propagate these migrations to your database.
 
 To apply the changes made on our models we use the `migrate` command to commit
 these changes. When you create new migrations (new models), we use the
-`makemigrations` command.
+`makemigrations` command to create new migration files and then apply them with
+`migrate` again.
 
 ## Basic commands
 
