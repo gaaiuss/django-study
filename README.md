@@ -40,14 +40,14 @@ the `include()`, e.g.:
 1. Import the include() function: from django.urls import include, path
 2. Add a URL to urlpatterns: path('blog/', include('blog.urls'))
 
-#### URLs inside templates
+#### 1. URLs inside templates
 
 To use urls in templates you have to specify a name to it under the path method
 `path('', views.blog, name='index')`. Even better is to set a namespace on the
 top of the urls.py file to get a better name later when using urls on templates
 `app_name = blog` so it will look like `blog:index` on the template.
 
-#### Dinamic URLs
+#### 2. Dinamic URLs
 
 Dinamic URLs can be used informing a variable after the path, like:
 `path("post/<int:post_id>/", post, name="post")` where the `<post_id>` can be
@@ -85,7 +85,7 @@ http request and returns a http response as a normal http communication.
 There you can manipulate the request, specifiy the response template redirection
 path (the page to respond) and manipulate the context.
 
-#### Context
+#### 1. Context
 
 The context is a data structure in form of a dictionary which you can send data
 to the templates. To use it, you can declare a dictionary especifying the key
@@ -102,19 +102,19 @@ To create a central template folder or at any other location you want, you can
 specify the path on the `settings.py` `TEMPLATES` in the `DIRS` list inside the
 project, e.g.: `"DIRS": [ BASE_DIR / "base"]`.
 
-#### Extends
+#### 1. Extends
 
 Django allows inheritance between templates using the `% extends %` word inside
 the html. This allows you to create a base template and extend it after on other
 templates inside an app for example.
 
-#### Include
+#### 2. Include
 
 You can import a whole html template using the `% include %` command inside any
 other template. You need to specify the whole path to the template you want to
 include, e.g.: `{% include 'global/partials/head.html' %}`.
 
-#### Block
+#### 3. Block
 
 The `{% block %}` tag is a placeholder for information, is meant to be set on a
 parent template (like on this project under `base/global/index.html`) to be
@@ -123,13 +123,13 @@ to set various options of code blocks (almost like a inheritance relation) on a
 base template and, later on the other child templates, replace them with the
 actual code. _A block DOES NOT WORK inside on a included file_.
 
-#### Template URLs
+#### 4. Template URLs
 
 URLs in templates can be referenced with the tag `{% url 'url_name' %}` and as
 said before, you can use the `app_name` namespace to specify the url name:
 `blog:index`.
 
-#### For loop
+#### 5. For loop
 
 You can also use a for loop in a template as well using:
 `{% for variable in iterable %} "for content" {% endfor %}` 'iterable' being
@@ -139,7 +139,7 @@ If you use a include inside a for, e.g.:
 `{% include 'global/partials/post_block.html' %}` the template `post_block`
 can use the post variable created by the for loop using `{post.key}`.
 
-#### If
+#### 6. If
 
 Like the for, you can use if inside a template:
 `{% if condition %} "if content" {% else %} "else content" {% endif %}`
@@ -162,7 +162,7 @@ To use the reference of the static files dir, we use tne tag `{% load static %}`
 on the top of the template file we want to use it and the `{% static %}` command
 on the the link reference, e.g.:`{% static 'assets/css/styles.css'%}`.
 
-#### Static files in production
+#### 1. Static files in production
 
 Django is not a server, static files are not loaded when using django in production
 (when debug is `DEBUG = False`), static files inside apps or project are just
@@ -178,6 +178,47 @@ with the command: `python manage.py collectstatic`.
 
 ---
 
+### Models
+
+Models are the source of your database, generaly referes to a single database.
+A model is another class that inherits the `models.Model` class, and each
+attribute is a database field. The primary key field is created automatically.
+
+`__str__` method on a model is used iside various parts inside Django, but mainly
+on the admin area, like the name of a instance of the model is shown on the django
+models object list.
+
+#### 1. Attributes/Fields
+
+Like any other SQL database, Django models follow the same structure but with
+different names.
+
+For more details access the docs:
+[Model Fields](https://docs.djangoproject.com/en/6.1/ref/models/fields/)
+
+---
+
+### Django Admin Site
+
+It is the main interface to manipulate your models in a simple way, do not try
+to create your entire front end on it.
+
+#### 1. Models
+
+To see/use your model in the Django admin area, you have to register it in the
+`admin.py` inside the app where you created your model. As a good pratice/consent
+between devs, we create the admin class with: `ModelnameAdmin(admin.ModelAdmin)`
+inheriting the admin.ModelAdmin from `django.contrib`. After that, we can use
+the `admin.register(YourModel)` decorator passing your model class as a argument
+to register the class.
+
+#### 2. Attributes/Fields
+
+There is a huge list to look for, see more details in:
+[Admin Model Options](https://docs.djangoproject.com/en/6.1/ref/contrib/admin/#modeladmin-options)
+
+---
+
 ### Migrations
 
 Migrations are Django's way of propagating model changes into the database.
@@ -188,6 +229,10 @@ To apply the changes made on our models we use the `migrate` command to commit
 these changes. When you create new migrations (new models), we use the
 `makemigrations` command to create new migration files and then apply them with
 `migrate` again.
+
+When you make a migration you create a file inside the project `migrations`
+folder, generally, we do not edit these files, we make a new migration (a new
+file) to apply new changes of your models.
 
 ## Basic commands
 
