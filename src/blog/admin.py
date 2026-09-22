@@ -4,4 +4,5 @@ from blog.models import Post
 
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin): ...
+class PostAdmin(admin.ModelAdmin):
+    list_display = "title", "short_description", "description"
