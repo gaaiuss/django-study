@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # my apps
     "blog",
     "home",
 ]
@@ -62,7 +63,7 @@ TEMPLATES: list[dict[str, str | bool | dict[str, list[str]] | list[Path]]] = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            BASE_DIR / "base",
+            BASE_DIR / "base",  # custom templates folder
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -124,11 +125,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "static/"  # default static url
 STATICFILES_DIRS = [
-    BASE_DIR / "base" / "static",
+    BASE_DIR / "base" / "static",  # local dev static folder
 ]
+# This is the location where the static files will be collected to be used in
+# production environment (collectstatic)
+STATIC_ROOT = BASE_DIR / "static_files"
 
+# when a user send a media file, this is the url that we can use to see it
+MEDIA_URL = "media/"
+# this is the folder inside the project that will stored these media files
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
