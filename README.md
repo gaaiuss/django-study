@@ -176,6 +176,17 @@ as well (e.g.: `STATIC_ROOT = BASE_DIR / 'static_files'`).
 After all is configured, you can collect all the static files (add to STATIC_ROOT)
 with the command: `python manage.py collectstatic`.
 
+#### 2. Access static and media files through url in development
+
+In a dev cenario we can use the django urls.py file to configure the static
+and media urls the be served by the django itself using:
+
+`urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)`
+`urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)`
+
+After that, you can access an image for example, through url in django admin or
+any part of the project.
+
 ---
 
 ### Models
