@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+import contextlib
 import os
 from pathlib import Path
 
@@ -30,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "Key not found, did you changed your .env f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: list[str] = []
 
 
 # Application definition
@@ -146,3 +147,6 @@ MAILERS = {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
 }
+
+with contextlib.suppress(ImportError):
+    from project.local_settings import *  # noqa: F403
