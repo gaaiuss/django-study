@@ -98,6 +98,15 @@ as a single view file. You just need to create a folder named `views` and a
 `__init__.py` inside it. After that you can create as many modules as you want,
 just remember to import all of them inside your `__init__.py`.
 
+#### 3. Query sets
+
+Django has many types of query sets to get data from your database and use it
+in your views. For more details see:
+[Django Query Sets](https://docs.djangoproject.com/en/6.1/ref/models/querysets/)
+
+For information about filters:
+[Django Field Lookups](https://docs.djangoproject.com/en/6.1/topics/db/queries/#field-lookups)
+
 ---
 
 ### Templates
