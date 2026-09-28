@@ -91,6 +91,13 @@ The context is a data structure in form of a dictionary which you can send data
 to the templates. To use it, you can declare a dictionary especifying the key
 value data, and use the key on the template to get the value.
 
+#### 2. View module
+
+You can create a python package to store all your views, Django understands it
+as a single view file. You just need to create a folder named `views` and a
+`__init__.py` inside it. After that you can create as many modules as you want,
+just remember to import all of them inside your `__init__.py`.
+
 ---
 
 ### Templates
