@@ -11,16 +11,6 @@ if TYPE_CHECKING:
 from blog.data import posts
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    template = "blog/index.html"
-    context = {
-        # "text": "This is the blog index context",
-        "title": "Blog - ",
-        "posts": posts,
-    }
-    return render(request, template, context)
-
-
 def post(request: HttpRequest, post_id: int) -> HttpResponse:
     post_found: dict[str, int | str] | None = None
 
