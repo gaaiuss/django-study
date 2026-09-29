@@ -19,9 +19,7 @@ components. The organization and separation of a piece of the application
 into apps is totally developer charged, you decide how the apps will look like
 and how they will be separated.
 
----
-
-### URLs
+## URLs
 
 The apps URLs point to a view that can be:
 
@@ -40,14 +38,14 @@ the `include()`, e.g.:
 1. Import the include() function: from django.urls import include, path
 2. Add a URL to urlpatterns: path('blog/', include('blog.urls'))
 
-#### 1. URLs inside templates
+### 1. URLs inside templates
 
 To use urls in templates you have to specify a name to it under the path method
 `path('', views.blog, name='index')`. Even better is to set a namespace on the
 top of the urls.py file to get a better name later when using urls on templates
 `app_name = blog` so it will look like `blog:index` on the template.
 
-#### 2. Dinamic URLs
+### 2. Dinamic URLs
 
 Dinamic URLs can be used informing a variable after the path, like:
 `path("post/<int:post_id>/", post, name="post")` where the `<post_id>` can be
@@ -75,9 +73,7 @@ Always specify the type of the variable, they can be:
   This allows you to match against a complete URL path rather than a segment of
   a URL path as with str.
 
----
-
-### Views
+## Views
 
 Views are the functions or classes that render the templates. They receive a
 http request and returns a http response as a normal http communication.
@@ -85,20 +81,20 @@ http request and returns a http response as a normal http communication.
 There you can manipulate the request, specifiy the response template redirection
 path (the page to respond) and manipulate the context.
 
-#### 1. Context
+### 1. Context
 
 The context is a data structure in form of a dictionary which you can send data
 to the templates. To use it, you can declare a dictionary especifying the key
 value data, and use the key on the template to get the value.
 
-#### 2. View module
+### 2. View module
 
 You can create a python package to store all your views, Django understands it
 as a single view file. You just need to create a folder named `views` and a
 `__init__.py` inside it. After that you can create as many modules as you want,
 just remember to import all of them inside your `__init__.py`.
 
-#### 3. Query sets
+### 3. Query sets
 
 Django has many types of query sets to get data from your database and use it
 in your views. For more details see:
@@ -107,9 +103,7 @@ in your views. For more details see:
 For information about filters:
 [Django Field Lookups](https://docs.djangoproject.com/en/6.1/topics/db/queries/#field-lookups)
 
----
-
-### Templates
+## Templates
 
 Templates can be separated in any way you want. By default they are stored in
 `templates` folder inside each app (this includes the project itself).
@@ -118,19 +112,19 @@ To create a central template folder or at any other location you want, you can
 specify the path on the `settings.py` `TEMPLATES` in the `DIRS` list inside the
 project, e.g.: `"DIRS": [ BASE_DIR / "base"]`.
 
-#### 1. Extends
+### 1. Extends
 
 Django allows inheritance between templates using the `% extends %` word inside
 the html. This allows you to create a base template and extend it after on other
 templates inside an app for example.
 
-#### 2. Include
+### 2. Include
 
 You can import a whole html template using the `% include %` command inside any
 other template. You need to specify the whole path to the template you want to
 include, e.g.: `{% include 'global/partials/head.html' %}`.
 
-#### 3. Block
+### 3. Block
 
 The `{% block %}` tag is a placeholder for information, is meant to be set on a
 parent template (like on this project under `base/global/index.html`) to be
@@ -139,13 +133,13 @@ to set various options of code blocks (almost like a inheritance relation) on a
 base template and, later on the other child templates, replace them with the
 actual code. _A block DOES NOT WORK inside on a included file_.
 
-#### 4. Template URLs
+### 4. Template URLs
 
 URLs in templates can be referenced with the tag `{% url 'url_name' %}` and as
 said before, you can use the `app_name` namespace to specify the url name:
 `blog:index`.
 
-#### 5. For loop
+### 5. For loop
 
 You can also use a for loop in a template as well using:
 `{% for variable in iterable %} "for content" {% endfor %}` 'iterable' being
@@ -155,16 +149,14 @@ If you use a include inside a for, e.g.:
 `{% include 'global/partials/post_block.html' %}` the template `post_block`
 can use the post variable created by the for loop using `{post.key}`.
 
-#### 6. If
+### 6. If
 
 Like the for, you can use if inside a template:
 `{% if condition %} "if content" {% else %} "else content" {% endif %}`
 And:
 `{% if condition %} "if content" {% elif condition %} "else if content" {% endif %}`
 
----
-
-### Static files
+## Static files
 
 Static files are all the files you will want to use as essential files needed for
 the application to work, like images, css files and script files.
@@ -178,7 +170,7 @@ To use the reference of the static files dir, we use tne tag `{% load static %}`
 on the top of the template file we want to use it and the `{% static %}` command
 on the the link reference, e.g.:`{% static 'assets/css/styles.css'%}`.
 
-#### 1. Static files in production
+### 1. Static files in production
 
 Django is not a server, static files are not loaded when using django in production
 (when debug is `DEBUG = False`), static files inside apps or project are just
@@ -192,7 +184,7 @@ as well (e.g.: `STATIC_ROOT = BASE_DIR / 'static_files'`).
 After all is configured, you can collect all the static files (add to STATIC_ROOT)
 with the command: `python manage.py collectstatic`.
 
-#### 2. Access static and media files through url in development
+### 2. Access static and media files through url in development
 
 In a dev cenario we can use the django urls.py file to configure the static
 and media urls the be served by the django itself using:
@@ -203,9 +195,7 @@ and media urls the be served by the django itself using:
 After that, you can access an image for example, through url in django admin or
 any part of the project.
 
----
-
-### Models
+## Models
 
 Models are the source of your database, generaly referes to a single database.
 A model is another class that inherits the `models.Model` class, and each
@@ -215,7 +205,7 @@ attribute is a database field. The primary key field is created automatically.
 on the admin area, like the name of a instance of the model is shown on the django
 models object list.
 
-#### 1. Attributes/Fields
+### 1. Attributes/Fields
 
 Like any other SQL database, Django models follow the same structure but with
 different names.
@@ -223,14 +213,12 @@ different names.
 For more details access the docs:
 [Model Fields](https://docs.djangoproject.com/en/6.1/ref/models/fields/)
 
----
-
-### Django Admin Site
+## Django Admin Site
 
 It is the main interface to manipulate your models in a simple way, do not try
 to create your entire front end on it.
 
-#### 1. Models
+### 1. Models
 
 To see/use your model in the Django admin area, you have to register it in the
 `admin.py` inside the app where you created your model. As a good pratice/consent
@@ -239,14 +227,12 @@ inheriting the admin.ModelAdmin from `django.contrib`. After that, we can use
 the `admin.register(YourModel)` decorator passing your model class as a argument
 to register the class.
 
-#### 2. Attributes/Fields
+### 2. Attributes/Fields
 
 There is a huge list to look for, see more details in:
 [Admin Model Options](https://docs.djangoproject.com/en/6.1/ref/contrib/admin/#modeladmin-options)
 
----
-
-### Migrations
+## Migrations
 
 Migrations are Django's way of propagating model changes into the database.
 So everytime you want to apply changes you make to your database, you have to
@@ -275,8 +261,6 @@ to start a new project.
 `startproject`: command to create a new project
 `.`: path to where the project will be installed
 
----
-
 ### Create an app
 
 ```sh
@@ -287,8 +271,6 @@ python manage.py startapp <app_name>
 the django-admin as a base command.
 `startapp`: creates a new app.
 
----
-
 ### Collect static files
 
 ```sh
@@ -297,8 +279,6 @@ python manage.py collectstatic
 
 `collectstatic`: Collect all static files from apps and add them to the STATIC_ROOT
 diretory.
-
----
 
 ### Create super user
 
@@ -311,17 +291,13 @@ many Django operations, including access to the admin area.
 `AUTH_PASSWORD_VALIDATORS`: is the project setting that checks the password
 strength, you can check it in your `project/settings.py`.
 
----
-
-#### Change password
+### Change password
 
 ```sh
 python manage.py createsuperuser
 ```
 
 For created users only.
-
----
 
 ### Migrations
 
