@@ -287,6 +287,8 @@ python manage.py startapp <app_name>
 the django-admin as a base command.
 `startapp`: creates a new app.
 
+Remember to add your app on your `settings.py`.
+
 ---
 
 ### Collect static files
