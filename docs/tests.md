@@ -59,3 +59,21 @@ self.fail(message) # fails a test
 
 Django uses the TestCase class to store and run its test, so to create your tests
 classes, remember to inherit from `from django.test import TestCase`.
+
+### Possible GOAT tip (Will save you hours of search)
+
+Beware when using `pytest.raises(Exception)`: If more than one exception is
+occuring, the raises manager will not function properly as it will only
+capture one exception:
+
+```python
+def test_recipe_title_with_more_than_65_chars_raises_exception(self) -> None:
+  self.recipe.title = "A" * 70
+  with pytest.raises(ValidationError):
+      self.recipe.full_clean()
+```
+
+In this case there was 2 exceptions accuring at the same time inside the model.
+A field was mandatory but it was not being populated, so 2 exceptions were occuring:
+ValidationError, because the max char lenght exceeded and the mandatory field
+was not populated, so the test aways passed.
