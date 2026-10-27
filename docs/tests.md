@@ -45,6 +45,16 @@ When we talk about tests in itself there are a convention to start a test functi
 with "test\_" and to be to most specifc possible with the test name:
 `def (test_recipe_home_template_shows_no_recipes_if_no_recipes_were_found)`
 
+## Useful unittest methods
+
+```python
+self.fail(message) # fails a test
+```
+
+```python
+@skip('WIP') # decorator to skip a function or class entirelly
+```
+
 ## Test in Django
 
 Django uses the TestCase class to store and run its test, so to create your tests
