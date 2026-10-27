@@ -51,3 +51,23 @@ Always specify the type of the variable, they can be:
 - `path`: Matches any non-empty string, including the path separator, '/'.
   This allows you to match against a complete URL path rather than a segment of
   a URL path as with str.
+
+## 3. Utility functions
+
+Some functions that can be very useful when dealing with Django URLs.
+
+### reverse()
+
+Basically return an absolute path given the proper view name:
+
+reverse(_viewname, urlconf=None, args=None, kwargs=None, current_app=None, \*, query=None, fragment=None_)
+
+### resolve()
+
+Returns the view function correspondent to the path given:
+
+resolve(_path, urlconf=None_)
+
+You can use the reverse function as a path given that it returns a path itself:
+
+resolve(_reverse('view:name')_)
