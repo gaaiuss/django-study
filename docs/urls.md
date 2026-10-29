@@ -17,6 +17,10 @@ the `include()`, e.g.:
 1. Import the include() function: from django.urls import include, path
 2. Add a URL to urlpatterns: path('blog/', include('blog.urls'))
 
+Aways position your most specific URLs above others in the `url_patterns`.
+Django tend to match the first url that he can find in the list, so follow the
+rule: _more specific above, more variable bellow_.
+
 ## 1. URLs inside templates
 
 To use urls in templates you have to specify a name to it under the path method
